@@ -4,7 +4,6 @@ from email.message import EmailMessage
 
 def sendmail(fromEmail,toEmail,sub,txt,passwd):
     #load_dotenv()
-    #fromEmail = "MS_XUpqJz@trial-z3m5jgrz6zzldpyo.mlsender.net"
     msg = EmailMessage()
     msg.set_content(txt)
     msg['Subject'] = sub
