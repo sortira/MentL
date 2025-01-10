@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -172,3 +173,11 @@ cython_debug/
 
 #tobeignored
 extrafiles/
+=======
+bin
+include
+lib
+lib64
+pyvenv.cfg
+geminiApiKey.txt
+>>>>>>> 7731aafffa7231f982151c5771bec3197cb455de
