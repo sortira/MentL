@@ -26,11 +26,12 @@ class User(UserMixin):
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
+    name = data.get('name')
     email = data.get('email')
     password = data.get('password')
 
-    if not email or not password:
-        return jsonify({'error': 'Email and password are required'}), 400
+    if not email or not password or not name:
+        return jsonify({'error': 'Email, name and password are required'}), 400
 
     user_ref = db.collection('users').document(email)
     if user_ref.get().exists:
@@ -39,7 +40,8 @@ def signup():
     hashed_password = generate_password_hash(password)
     user_ref.set({
         'email': email,
-        'password': hashed_password
+        'password': hashed_password,
+        'name': name
     })
     return jsonify({'message': 'User registered successfully'}), 201
 
@@ -63,16 +65,19 @@ def login():
 
     user = User(email)
     login_user(user)
-    return jsonify({'message': 'Logged in successfully'}), 200
+    return redirect(url_for('dashboard'))
 
 @app.route('/')
 def home():
+    
     return render_template('home.html')
 
 @login_manager.user_loader
 def user_loader(email):
-    if email not in users:
-        return
+    user_ref = db.collection('users').document(email)
+    user_doc = user_ref.get()
+    if not user_doc.exists:
+        return None
 
     user = User(email)
     return user
@@ -92,10 +97,13 @@ def log_sleep():
     if not hours:
         return jsonify({'error': 'Hours slept is required'}), 400
 
-    db.collection('users').document(current_user.id).collection('sleep').document(date).set({
-        'hours': hours,
-        'date': date
-    })
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+
+    sleep_data = user_data.get('sleep', [])
+    sleep_data.append({'date': date, 'hours': hours})
+
+    user_ref.update({'sleep': sleep_data})
     return jsonify({'message': 'Sleep data recorded successfully'}), 201
 
 @app.route('/physical_activity', methods=['POST'])
@@ -106,13 +114,16 @@ def log_physical_activity():
     date = data.get('date', datetime.utcnow().strftime('%Y-%m-%d'))
 
     if not hours:
-        return jsonify({'error': 'Hours of physical activity is required'}), 400
+        return jsonify({'error': 'Hours excercised is required'}), 400
 
-    db.collection('users').document(current_user.id).collection('physical_activity').document(date).set({
-        'hours': hours,
-        'date': date
-    })
-    return jsonify({'message': 'Physical activity data recorded successfully'}), 201
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+
+    exercise_data = user_data.get('physical_activity', [])
+    exercise_data.append({'date': date, 'hours': hours})
+
+    user_ref.update({'physical_activity': sleep_data})
+    return jsonify({'message': 'Exercise data recorded successfully'}), 201
 
 @app.route('/food', methods=['POST'])
 @login_required
@@ -121,14 +132,17 @@ def log_food():
     calories = data.get('calories')
     date = data.get('date', datetime.utcnow().strftime('%Y-%m-%d'))
 
-    if not calories:
+    if not hours:
         return jsonify({'error': 'Calories consumed is required'}), 400
 
-    db.collection('users').document(current_user.id).collection('food').document(date).set({
-        'calories': calories,
-        'date': date
-    })
-    return jsonify({'message': 'Food data recorded successfully'}), 201
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+
+    calories_data = user_data.get('calories', [])
+    calories_data.append({'date': date, 'calories': calories})
+
+    user_ref.update({'calories': calories_data})
+    return jsonify({'message': 'Calories data recorded successfully'}), 201
 
 @app.route('/journalling', methods=['POST'])
 @login_required
@@ -137,14 +151,17 @@ def log_journalling():
     content = data.get('content')
     date = data.get('date', datetime.utcnow().strftime('%Y-%m-%d'))
 
-    if not content:
-        return jsonify({'error': 'Journal content is required'}), 400
+    if not hours:
+        return jsonify({'error': 'Content is required'}), 400
 
-    db.collection('users').document(current_user.id).collection('journals').document(date).set({
-        'content': content,
-        'date': date
-    })
-    return jsonify({'message': 'Journal recorded successfully'}), 201
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+
+    content_data = user_data.get('journals', [])
+    content_data.append({'date': date, 'content': hours})
+
+    user_ref.update({'journals': sleep_data})
+    return jsonify({'message': 'Journal data recorded successfully'}), 201
 
 @app.route('/<category>', methods=['GET'])
 @login_required
@@ -164,15 +181,27 @@ def fetch_data(category):
 
 @app.route('/login', methods=['GET'])
 def send_login_page():
-    return render_template('xxxlogin.html')
-@app.route('/login_2', methods=['GET'])
-def send_login_2_page():
     return render_template('login.html')
 
+@app.route('/dashboard', methods=['GET'])
+def send_dashboard_page():
+    return render_template('dashboard.html', name=current_user.id)
 
-@app.route('/signup', methods=['GET'])
-def send_signup_page():
-    return render_template('xxxsignup.html')
+@app.route('/articles', methods=['GET'])
+def send_articles_page():
+    pass
+
+@app.route('/aboutus', methods=['GET'])
+def send_aboutus_page():
+    pass
+
+@app.route('/community', methods=['GET'])
+def send_community_page():
+    pass
+
+@app.route('/journalling', methods=['GET'])
+def send_journalling_page():
+    pass
 
 
 if __name__ == '__main__':
