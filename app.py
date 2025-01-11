@@ -95,7 +95,8 @@ def login():
 
     user = User(email)
     login_user(user)
-    return redirect(url_for('dashboard'))
+    #return redirect(url_for('dashboard'))
+    return jsonify({'user':'69'})
 
 @app.route('/')
 def home():
@@ -131,8 +132,18 @@ def log_sleep():
     user_data = user_ref.get().to_dict()
 
     sleep_data = user_data.get('sleep', [])
-    sleep_data.append({'date': date, 'hours': hours})
 
+    isPresent = False
+    for d in sleep_data:
+        if(date == d['date']):
+            print(sleep_data.index(d))
+            sleep_data[sleep_data.index(d)] = {'date':date,'hours':str(int(d['hours'])+int(hours))}
+            isPresent = True
+            print("done")
+            break        
+    if not isPresent:
+        sleep_data.append({'date': date, 'hours': hours})
+    print(sleep_data)
     user_ref.update({'sleep': sleep_data})
     return jsonify({'message': 'Sleep data recorded successfully'}), 201
 
@@ -150,8 +161,17 @@ def log_physical_activity():
     user_data = user_ref.get().to_dict()
 
     exercise_data = user_data.get('physical_activity', [])
-    exercise_data.append({'date': date, 'hours': hours})
 
+    isPresent = False
+    for d in exercise_data:
+        if(date == d['date']):
+            print(exercise_data.index(d))
+            exercise_data[exercise_data.index(d)] = {'date':date,'hours':str(int(d['hours'])+int(hours))}
+            isPresent = True
+            print("done")
+            break        
+    if not isPresent:
+        exercise_data.append({'date': date, 'hours': hours})
     user_ref.update({'physical_activity': exercise_data})
     return jsonify({'message': 'Exercise data recorded successfully'}), 201
 
@@ -169,8 +189,16 @@ def log_food():
     user_data = user_ref.get().to_dict()
 
     calories_data = user_data.get('calories', [])
-    calories_data.append({'date': date, 'calories': calories})
-
+    isPresent = False
+    for d in calories_data:
+        if(date == d['date']):
+            print(calories_data.index(d))
+            calories_data[calories_data.index(d)] = {'date':date,'calories':str(int(d['calories'])+int(calories))}
+            isPresent = True
+            print("done")
+            break        
+    if not isPresent:
+        calories_data.append({'date': date, 'calories': calories})
     user_ref.update({'calories': calories_data})
     return jsonify({'message': 'Calories data recorded successfully'}), 201
 
