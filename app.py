@@ -163,8 +163,8 @@ def login():
 
     user = User(email)
     login_user(user)
-    #return redirect(url_for('dashboard'))
-    return jsonify({'user':'69'})
+    return redirect('/dashboard')
+    #return jsonify({'user':'69'})
 
 @app.route('/')
 def home():

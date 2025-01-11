@@ -97,15 +97,15 @@
                             <stop offset="100%" stop-color="#cb2240" stop-opacity="1" />
                           </linearGradient>
                         </defs>
-                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * sleep_score / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
+                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * hscore / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
                       </svg>
                     </div>
                     <div class="product-inf__percent-txt">
-                      {{sleep_score}}%
+                      {{hscore|round(2)}}%
                     </div>
                   </div>
 
-                  <span class="product-inf__title">DURABILITY RATE</span>
+                  <span class="product-inf__title">HEALTH SCORE</span>
                 </div>
 
               </div>
@@ -154,12 +154,12 @@
                     </div>
                   </div>
 
-                  <span class="product-inf__title">DURABILITY</span>
+                  <span class="product-inf__title">CALORIE SCORE</span>
                 </div>
 
               </div>
               <!-- update here bro -->
-              <div class="product-slider__bottom">
+              <!--<div class="product-slider__bottom">
                 <button class="product-slider__fav js-fav"><span class="heart"></span>
                     <input type="text" class="inp_food" placeholder="Enter today's score">
                 
@@ -168,7 +168,7 @@
                     SUBMIT
                 </button>
                
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -177,15 +177,15 @@
           <div class="product-slider__card">
             <div class="product-slider__content">
               <h1 class="product-slider__title">
-                KYLO REN'S <br> LIGHTSABER
+                MENTL <br> EXERCISE SCORE
               </h1>
-              <span class="product-slider__price">$1.699,<sup>99</sup></span>
+              <!---<span class="product-slider__price">$1.699,<sup>99</sup></span>-->
               <div class="product-ctr">
                 <div class="product-labels">
-                  <div class="product-labels__title">VOLTAGE RANGE</div>
+                  <!--<div class="product-labels__title">VOLTAGE RANGE</div>-->
 
                   <div class="product-labels__group">
-                    <label class="product-labels__item">
+                    <!--<label class="product-labels__item">>
                       <input type="radio" class="product-labels__checkbox" name="type3" checked>
                       <span class="product-labels__txt">2000 <sup>WATT</sup></span>
                     </label>
@@ -197,27 +197,12 @@
                   </div>
 
                   <div class="product-labels__title">LASER SIZE</div>
+                  -->
+                  <label class="product-labels__item">
+                    <input type="radio" class="product-labels__checkbox" name="type5" >
+                    <span class="product-labels__txt">Check your physical activity score </span>
+                  </label>
 
-                  <div class="product-labels__group">
-                    <label class="product-labels__item">
-                      <input type="radio" class="product-labels__checkbox" name="type2" >
-                      <span class="product-labels__txt">S</span>
-                    </label>
-
-                    <label class="product-labels__item">
-                      <input type="radio" class="product-labels__checkbox" name="type2" checked>
-                      <span class="product-labels__txt">M</span>
-                    </label>
-
-                    <label class="product-labels__item">
-                      <input type="radio" class="product-labels__checkbox" name="type2" >
-                      <span class="product-labels__txt">L</span>
-                    </label>
-
-                    <label class="product-labels__item">
-                      <input type="radio" class="product-labels__checkbox" name="type2" >
-                      <span class="product-labels__txt">XL</span>
-                    </label>
 
                   </div>
 
@@ -235,19 +220,20 @@
                             <stop offset="100%" stop-color="#cb2240" stop-opacity="1" />
                           </linearGradient>
                         </defs>
-                        <circle cx="50" cy="50" r="47" stroke-dasharray="240, 300" stroke="#cb2240" stroke-width="4" fill="none"/>
+                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * exercise_score / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
                       </svg>
                     </div>
                     <div class="product-inf__percent-txt">
-                      80%
+                    {{exercise_score}}%
                     </div>
                   </div>
 
-                  <span class="product-inf__title">DURABILITY</span>
+                  <span class="product-inf__title">EXERCISE SCORE</span>
                 </div>
 
               </div>
               <!-- update here bro -->
+               <!--
               <div class="product-slider__bottom">
                 <button class="product-slider__fav js-fav"><span class="heart"></span>
                     <input type="text" class="inp_food" placeholder="Enter today's score">
@@ -256,7 +242,7 @@
                 <button class="product-slider__cart">
                     SUBMIT
                 </button>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -265,16 +251,16 @@
           <div class="product-slider__card">
             <div class="product-slider__content">
               <h1 class="product-slider__title">
-                IMPERIAL ARMY'S <br>
-                DEATH STAR
+                MENTL <br>
+                SLEEP SCORE
               </h1>
-              <span class="product-slider__price">$9.999,<sup>99</sup></span>
+              <!--<span class="product-slider__price">$9.999,<sup>99</sup></span>-->
               <div class="product-ctr">
                 <div class="product-labels">
-                  <div class="product-labels__title">HYPERDRIVE RATING</div>
+                  <!--<div class="product-labels__title">HYPERDRIVE RATING</div>-->
 
                   <div class="product-labels__group">
-                    <label class="product-labels__item">
+                    <!--<label class="product-labels__item">
                       <input type="radio" class="product-labels__checkbox" name="type6" checked>
                       <span class="product-labels__txt">CLASS 4</span>
                     </label>
@@ -296,6 +282,10 @@
                     <label class="product-labels__item">
                       <input type="radio" class="product-labels__checkbox" name="type7">
                       <span class="product-labels__txt">TURBOLASER</span>
+                    </label>-->
+                    <label class="product-labels__item">
+                      <input type="radio" class="product-labels__checkbox" name="type5" >
+                      <span class="product-labels__txt">Check your sleep score </span>
                     </label>
                   </div>
 
@@ -313,19 +303,20 @@
                             <stop offset="100%" stop-color="#cb2240" stop-opacity="1" />
                           </linearGradient>
                         </defs>
-                        <circle cx="50" cy="50" r="47" stroke-dasharray="240, 300" stroke="#cb2240" stroke-width="4" fill="none"/>
+                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * sleep_score / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
                       </svg>
                     </div>
                     <div class="product-inf__percent-txt">
-                      80%
+                      {{sleep_score}}%
                     </div>
                   </div>
 
-                  <span class="product-inf__title">DURABILITY RATE</span>
+                  <span class="product-inf__title">SLEEP SCORE</span>
                 </div>
 
               </div>
               <!-- update here bro -->
+               <!--
               <div class="product-slider__bottom">
                 <button class="product-slider__fav js-fav"><span class="heart"></span>
                     <input type="text" class="inp_food" placeholder="Enter today's score">
@@ -334,7 +325,7 @@
                 <button class="product-slider__cart">
                     SUBMIT
                 </button>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
