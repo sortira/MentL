@@ -14,7 +14,7 @@ async function loginReq()
 {
   const emailVal = document.getElementById("email_login").value;
   const passVal = document.getElementById("password_login").value;
-  fetch("/login", {
+  await fetch("/login", {
     method: "POST",
     body: JSON.stringify({
       email: emailVal,
@@ -24,5 +24,6 @@ async function loginReq()
       "Content-type": "application/json; charset=UTF-8"
     }
   });
+  window.location.href="/dashboard";
   
 }
