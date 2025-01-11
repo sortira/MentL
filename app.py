@@ -122,7 +122,7 @@ def log_physical_activity():
     exercise_data = user_data.get('physical_activity', [])
     exercise_data.append({'date': date, 'hours': hours})
 
-    user_ref.update({'physical_activity': sleep_data})
+    user_ref.update({'physical_activity': exercise_data})
     return jsonify({'message': 'Exercise data recorded successfully'}), 201
 
 @app.route('/food', methods=['POST'])
@@ -132,7 +132,7 @@ def log_food():
     calories = data.get('calories')
     date = data.get('date', datetime.utcnow().strftime('%Y-%m-%d'))
 
-    if not hours:
+    if not calories:
         return jsonify({'error': 'Calories consumed is required'}), 400
 
     user_ref = db.collection('users').document(current_user.id)
@@ -151,16 +151,16 @@ def log_journalling():
     content = data.get('content')
     date = data.get('date', datetime.utcnow().strftime('%Y-%m-%d'))
 
-    if not hours:
+    if not content:
         return jsonify({'error': 'Content is required'}), 400
 
     user_ref = db.collection('users').document(current_user.id)
     user_data = user_ref.get().to_dict()
 
     content_data = user_data.get('journals', [])
-    content_data.append({'date': date, 'content': hours})
+    content_data.append({'date': date, 'content': content})
 
-    user_ref.update({'journals': sleep_data})
+    user_ref.update({'journals': content_data})
     return jsonify({'message': 'Journal data recorded successfully'}), 201
 
 @app.route('/<category>', methods=['GET'])
