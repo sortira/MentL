@@ -1,5 +1,105 @@
-<!DOCTYPE html>
-<body>
-<P><B>Home Page</B></P>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="static/home.css" />
+    <script type="module" src="static/home.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js'></script>
+</head>
+
+<body class="loading">
+    <!-- add karla font -->
+
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <button style="all:unset; font-size: 24px; color: white;" id="ham" onclick="toggleMenu()">
+                    ☰
+                </button>
+            </div>
+         
+            <div id="dropdown" class="dropdown">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#articles">Articles</a>
+            </div>
+
+
+            <nav>
+                <a class="active" href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Articles</a>
+            </nav>
+            <a href="login_2" class="donate-link" style="width: fit-content;">Sign In</a>
+        </div>
+    </header>
+
+    <main>
+        <div id="slider">
+            <div class="slider-inner">
+                <div id="slider-content">
+                    <div class="meta">Calm your mind</div>
+                    <h2 id="slide-title"><div class="t_border">Asiatic <br>Lion</div></h2>
+                    <span data-slide-title="0"><div class="t_border">Asiatic <br>Lion</div></span>
+                    <span data-slide-title="1"> <div class="t_border">Asiatic <br>Lion</div></span>
+                    <span data-slide-title="2"><div class="t_border">Asiatic <br>Lion</div></span>
+                    <span data-slide-title="3"><div class="t_border">Asiatic <br>Lion</div></span>
+                    <div class="meta">Status</div>
+                    <div id="slide-status">Critically Endangered</div>
+                    <span data-slide-status="0">Critically Endangered</span>
+                    <span data-slide-status="1">Endangered</span>
+                    <span data-slide-status="2">Endangered</span>
+                    <span data-slide-status="3">Least Concern</span> 
+                </div>
+            </div>
+
+            <!-- <img src=""/> -->
+            <img src="static/blur_edges (2).jpg" />
+            <img src="static/blur_edges (3).jpg" />
+            <img src="static/blur_edges (6).jpg" />
+            <img src="static/blur_edges (7).jpg" />
+            <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/tiger2.jpg" /> -->
+            <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/bear2.jpg" /> -->
+
+            <div id="pagination">
+                <button class="active" data-slide="0"></button>
+                <button data-slide="1"></button>
+                <button data-slide="2"></button>
+                <button data-slide="3"></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "UA-40525870-5");
+        function toggleMenu() {
+            console.log("aaa")
+            const dropdown = document.getElementById('dropdown');
+            // Toggle the display property between "block" and "none"
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        document.addEventListener('click', (event) => {
+            const dropdown = document.getElementById('dropdown');
+            const button = document.getElementById('ham');
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
 </body>
+
 </html>

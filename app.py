@@ -165,6 +165,10 @@ def fetch_data(category):
 @app.route('/login', methods=['GET'])
 def send_login_page():
     return render_template('xxxlogin.html')
+@app.route('/login_2', methods=['GET'])
+def send_login_2_page():
+    return render_template('login.html')
+
 
 @app.route('/signup', methods=['GET'])
 def send_signup_page():
