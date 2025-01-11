@@ -51,12 +51,24 @@ form {
   grid-row: 1 / 2;
 }
 
+.padd{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
 form.sign-up-form {
   opacity: 0;
   z-index: 1;
 }
 
-form.sign-in-form {
+.padd {
   z-index: 2;
 }
 
@@ -252,7 +264,7 @@ form.sign-in-form {
   z-index: 2;
 }
 
-.container.sign-up-mode form.sign-in-form {
+.container.sign-up-mode .padd {
   opacity: 0;
   z-index: 1;
 }
@@ -375,6 +387,10 @@ form.sign-in-form {
 
 @media (max-width: 570px) {
   form {
+    padding: 0 1.5rem;
+  }
+
+  .padd{
     padding: 0 1.5rem;
   }
 
