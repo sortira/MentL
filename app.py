@@ -23,6 +23,36 @@ class User(UserMixin):
         self.id = id
         self.password = password
 
+def calculate_sleep_score(email):
+    try:
+        user_ref = db.collection('users').document(email)
+        user_data = user_ref.get()
+        if not user_data.exists:
+            print("User not found.")
+            return None
+        sleep_data = user_data.to_dict().get('sleep', [])
+        if not sleep_data:
+            print("No sleep data available.")
+            return None
+        total_sleep_hours = 0
+        for entry in sleep_data:
+            try:
+                total_sleep_hours += float(entry.get('hours', 0))
+            except ValueError:
+                print(f"Invalid value for hours: {entry.get('hours')}, skipping this entry.")
+                continue
+        total_days = len(sleep_data)
+        if total_days == 0:
+            print("No days with sleep data.")
+            return None
+        sleep_score = (total_sleep_hours / (8 * total_days)) * 100
+        if sleep_score > 100:
+            sleep_score = 100
+        return round(sleep_score, 2)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
@@ -205,4 +235,5 @@ def send_journalling_page():
 
 
 if __name__ == '__main__':
+    print(calculate_sleep_score('ass@ass.com'))
     app.run(debug=True)
