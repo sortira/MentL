@@ -315,7 +315,7 @@ def send_dashboard_page():
 
 @app.route('/articles', methods=['GET'])
 def send_articles_page():
-    pass
+    return render_template('articles.html')
 
 @app.route('/aboutus', methods=['GET'])
 def send_aboutus_page():
@@ -327,7 +327,7 @@ def send_community_page():
 
 @app.route('/journalling', methods=['GET'])
 def send_journalling_page():
-    pass
+    return render_template('journal.html')
 
 
 if __name__ == '__main__':
