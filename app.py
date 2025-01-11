@@ -53,6 +53,70 @@ def calculate_sleep_score(email):
         print(f"An error occurred: {e}")
         return None
 
+def calculate_physical_activity_score(email):
+    try:
+        user_ref = db.collection('users').document(email)
+        user_data = user_ref.get()
+        if not user_data.exists:
+            print("User not found.")
+            return None
+        exercise_data = user_data.to_dict().get('physical_activity', [])
+        if not sleep_data:
+            print("No exercise data available.")
+            return None
+        total_exercise_hours = 0
+        for entry in exercise_data:
+            try:
+                total_exercise_hours += float(entry.get('hours', 0))
+            except ValueError:
+                print(f"Invalid value for hours: {entry.get('hours')}, skipping this entry.")
+                continue
+        total_days = len(exercise_data)
+        if total_days == 0:
+            print("No days with sleep data.")
+            return None
+        exercise_score = (total_exercise_hours / (8 * total_days)) * 100
+        if exercise_score > 100:
+            exercise_score = 100
+        return round(exercise_score, 2)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+def calculate_calories_score(email):
+    try:
+        user_ref = db.collection('users').document(email)
+        user_data = user_ref.get()
+        if not user_data.exists:
+            print("User not found.")
+            return None
+        sleep_data = user_data.to_dict().get('calories', [])
+        if not sleep_data:
+            print("No sleep data available.")
+            return None
+        total_sleep_hours = 0
+        for entry in sleep_data:
+            try:
+                total_sleep_hours += float(entry.get('hours', 0))
+            except ValueError:
+                print(f"Invalid value for hours: {entry.get('hours')}, skipping this entry.")
+                continue
+        total_days = len(sleep_data)
+        if total_days == 0:
+            print("No days with sleep data.")
+            return None
+        sleep_score = (total_sleep_hours / (2700 * total_days)) * 100
+        if sleep_score > 100:
+            sleep_score = 100
+        return round(sleep_score, 2)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+def calculate_mentl_score(email):
+    overall = calculate_calories_score(email) + calculate_physical_activity_score(email) + calculate_sleep_score(email)
+    return overall / 3
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
@@ -263,5 +327,4 @@ def send_journalling_page():
 
 
 if __name__ == '__main__':
-    print(calculate_sleep_score('ass@ass.com'))
     app.run(debug=True)
