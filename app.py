@@ -48,6 +48,7 @@ def calculate_sleep_score(email):
         sleep_score = (total_sleep_hours / (8 * total_days)) * 100
         if sleep_score > 100:
             sleep_score = 100
+        print('sleep score is ', sleep_score)
         return round(sleep_score, 2)
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -78,6 +79,7 @@ def calculate_physical_activity_score(email):
         exercise_score = (total_exercise_hours / (8 * total_days)) * 100
         if exercise_score > 100:
             exercise_score = 100
+        print('exercise score is ', exercise_score)
         return round(exercise_score, 2)
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -108,6 +110,7 @@ def calculate_calories_score(email):
         sleep_score = (total_sleep_hours / (2700 * total_days)) * 100
         if sleep_score > 100:
             sleep_score = 100
+        print('calories score is ', sleep_score)
         return round(sleep_score, 2)
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -115,6 +118,7 @@ def calculate_calories_score(email):
 
 def calculate_mentl_score(email):
     overall = calculate_calories_score(email) + calculate_physical_activity_score(email) + calculate_sleep_score(email)
+    print('health score is ', overall / 3)
     return overall / 3
 
 @app.route('/signup', methods=['POST'])
@@ -307,7 +311,7 @@ def send_login_page():
 
 @app.route('/dashboard', methods=['GET'])
 def send_dashboard_page():
-    return render_template('dashboard.html', name=current_user.id)
+    return render_template('dashboard.html', hscore=calculate_mentl_score(current_user.id), sleep_score=calculate_sleep_score(current_user.id), exercise_score=calculate_physical_activity_score(current_user.id), calories_score=calculate_calories_score(current_user.id))
 
 @app.route('/articles', methods=['GET'])
 def send_articles_page():

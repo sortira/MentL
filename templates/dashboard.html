@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Star Wars Imperial Army Product Slider </title>
+  <title>Mentl Dashboard </title>
   <link rel="stylesheet" href="static/dash.css">
 
 </head>
@@ -12,7 +12,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title> Star Wars Imperial Army Product Slider | Nothing4us </title>
+  <title> Mentl </title>
   <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css'><link rel="stylesheet" href="static/style.css">
@@ -62,10 +62,9 @@
             <!-- <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1536405223/starwars/item-4-bg.webp" alt="star wars" class="product-slider__cover"> -->
             <div class="product-slider__content">
               <h1 class="product-slider__title">
-                STORMTROPER <br>
-                HELMET
+                MentL <br>
+                Health Score
               </h1>
-              <span class="product-slider__price">$1.299,<sup>99</sup></span>
               <div class="product-ctr">
                 <div class="product-labels">
                   <!-- <div class="product-labels__title">HELMET SIZE</div> -->
@@ -98,11 +97,11 @@
                             <stop offset="100%" stop-color="#cb2240" stop-opacity="1" />
                           </linearGradient>
                         </defs>
-                        <circle cx="50" cy="50" r="47" stroke-dasharray="240, 300" stroke="#cb2240" stroke-width="4" fill="none"/>
+                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * sleep_score / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
                       </svg>
                     </div>
                     <div class="product-inf__percent-txt">
-                      80%
+                      {{sleep_score}}%
                     </div>
                   </div>
 
@@ -111,13 +110,7 @@
 
               </div>
 
-              <div class="product-slider__bottom">
-                <button class="product-slider__cart">
-                  ADD TO CART
-                </button>
-
-                <button class="product-slider__fav js-fav"><span class="heart"></span> ADD TO WISHLIST</button>
-              </div>
+             
             </div>
           </div>
         </div>
@@ -125,9 +118,8 @@
           <div class="product-slider__card">
             <div class="product-slider__content">
               <h1 class="product-slider__title">
-                IMPERIAL  ARMY’S <br> TIE FIGHTER
+                MENTL <br> CALORIE SCORE
               </h1>
-              <span class="product-slider__price">$9.999,<sup>99</sup></span>
               <div class="product-ctr">
                 <div class="product-labels">
 
@@ -136,7 +128,7 @@
 
                     <label class="product-labels__item">
                       <input type="radio" class="product-labels__checkbox" name="type1">
-                      <span class="product-labels__txt">Check your food score</span>
+                      <span class="product-labels__txt">Check your calorie score</span>
                     </label>
                   </div>
 
@@ -154,11 +146,11 @@
                             <stop offset="100%" stop-color="#cb2240" stop-opacity="1" />
                           </linearGradient>
                         </defs>
-                        <circle cx="50" cy="50" r="47" stroke-dasharray="225, 300" stroke="#cb2240" stroke-width="4" fill="none"/>
+                        <circle cx="50" cy="50" r="47" stroke-dasharray="{{ (295.31 * calories_score / 100)|round(2) }}, 295.31" stroke="#cb2240" stroke-width="4" fill="none"/>
                       </svg>
                     </div>
                     <div class="product-inf__percent-txt">
-                      75%
+                      {{calories_score}}%
                     </div>
                   </div>
 
