@@ -61,7 +61,7 @@ def calculate_physical_activity_score(email):
             print("User not found.")
             return None
         exercise_data = user_data.to_dict().get('physical_activity', [])
-        if not sleep_data:
+        if not exercise_data:
             print("No exercise data available.")
             return None
         total_exercise_hours = 0
