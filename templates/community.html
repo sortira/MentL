@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<body>
+<table>
+<tr>
+<th>User</th>
+<th>Post</th>
+<th>Likes</th>
+</tr>
+{% for p in posts %}
+<tr>
+<td>{{p['name']}}</td>
+<td>{{p['heading']}}</td>
+<td>{{p['likes']}}</td>
+<td>{{linkStart} + {p['postId']} + {linkEnd}}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
