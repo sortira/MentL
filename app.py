@@ -33,7 +33,7 @@ def calculate_sleep_score(email):
         sleep_data = user_data.to_dict().get('sleep', [])
         if not sleep_data:
             print("No sleep data available.")
-            return None
+            return 0.0
         total_sleep_hours = 0
         for entry in sleep_data:
             try:
@@ -64,7 +64,7 @@ def calculate_physical_activity_score(email):
         exercise_data = user_data.to_dict().get('physical_activity', [])
         if not exercise_data:
             print("No exercise data available.")
-            return None
+            return 0.0
         total_exercise_hours = 0
         for entry in exercise_data:
             try:
@@ -95,13 +95,13 @@ def calculate_calories_score(email):
         sleep_data = user_data.to_dict().get('calories', [])
         if not sleep_data:
             print("No sleep data available.")
-            return None
+            return 0.0
         total_sleep_hours = 0
         for entry in sleep_data:
             try:
-                total_sleep_hours += float(entry.get('hours', 0))
+                total_sleep_hours += float(entry.get('calories', 0))
             except ValueError:
-                print(f"Invalid value for hours: {entry.get('hours')}, skipping this entry.")
+                print(f"Invalid value for hours: {entry.get('calories')}, skipping this entry.")
                 continue
         total_days = len(sleep_data)
         if total_days == 0:
@@ -168,7 +168,8 @@ def login():
 
 @app.route('/')
 def home():
-    
+    #if(current_user.is_authenticated):
+    #    return redirect('/dashboard')
     return render_template('home.html')
 
 @login_manager.user_loader
@@ -309,7 +310,9 @@ def fetch_data(category):
 def send_login_page():
     return render_template('login.html')
 
+
 @app.route('/dashboard', methods=['GET'])
+@login_required
 def send_dashboard_page():
     return render_template('dashboard.html', hscore=calculate_mentl_score(current_user.id), sleep_score=calculate_sleep_score(current_user.id), exercise_score=calculate_physical_activity_score(current_user.id), calories_score=calculate_calories_score(current_user.id))
 
