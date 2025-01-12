@@ -752,3 +752,12 @@ border-radius: 30px;
   max-height: fit-content;
   min-height: fit-content;
 }
+.ph{
+  min-height: 230px;
+}
+@media screen and (min-width: 993px) {
+  .ph {
+    min-height: 0;
+    max-height: 0;
+  }  
+}
