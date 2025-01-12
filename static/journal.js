@@ -41,3 +41,8 @@ function loadAbout()
 {
     window.location.href="/aboutus"
 }
+
+function get_journal()
+{
+    window.location.href = "/getjourn"
+}
