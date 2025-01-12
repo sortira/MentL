@@ -26,6 +26,7 @@ body {
   background-color: rgb(0,0,0, 0.6);
   background-blend-mode: overlay;
   background-size: cover;
+  /* overflow-y: hidden; */
 }
 
 * {
@@ -740,4 +741,14 @@ border-radius: 30px;
     }
 }
     
-    
+.product-slider__wrp{
+  max-height: fit-content;
+  min-height: fit-content;
+} 
+
+.swiper-wrapper{
+  box-shadow: none;
+  background-image: unset;
+  max-height: fit-content;
+  min-height: fit-content;
+}
