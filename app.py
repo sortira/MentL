@@ -322,7 +322,7 @@ def send_articles_page():
 
 @app.route('/aboutus', methods=['GET'])
 def send_aboutus_page():
-    pass
+    return render_template('aboutus.html')
 
 @app.route('/community', methods=['GET'])
 def send_community_page():
