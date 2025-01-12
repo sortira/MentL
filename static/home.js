@@ -1,4 +1,6 @@
-
+window.onload=function(){
+  setInterval(()=>{changeAnim()},5000)
+}
 const displacementSlider = function (opts) {
 
   let vertex = `
@@ -232,3 +234,25 @@ imagesLoaded(document.querySelectorAll('img'), () => {
 
 
 });
+
+let anim = true;
+const b0 = document.getElementById("b0");
+const b1 = document.getElementById("b1");
+const b2 = document.getElementById("b2");
+const b3 = document.getElementById("b3");
+let bn = b0;
+
+let btnPt = 0;
+function changeAnim()
+{
+  if(btnPt >= 3)
+  {
+    btnPt = 0;
+  }
+  else
+  {
+    btnPt = btnPt + 1;
+  }
+  bn = document.getElementById("b"+btnPt);
+  bn.click();
+}
