@@ -38,6 +38,15 @@ body {
     background-size: cover;
     background-blend-mode: color;
 }
+.header button:hover{
+    cursor: pointer;
+
+}
+
+.header a:hover{
+    cursor: pointer;
+
+}
 .box {
     font-size: 20px;
     height: fit-content;
@@ -79,6 +88,9 @@ button {
     border-radius: 20px;
     background-image: linear-gradient(-45deg, #cc3843 0%, #cb193f 100%);
     /* background-color: ; */
+}
+button:hover{
+    cursor: pointer;
 }
 .header button{
     all:unset;

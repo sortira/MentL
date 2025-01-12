@@ -64,7 +64,15 @@ a {
     min-height: 100vh;
   }
 }
+.header button:hover{
+  cursor: pointer;
 
+}
+
+.header a:hover{
+  cursor: pointer;
+
+}
 .content {
   height: 600px;
   margin: auto;

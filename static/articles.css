@@ -226,4 +226,12 @@ body {
     transform: scale(1.05);
 }
 
+.header button:hover{
+    cursor: pointer;
 
+}
+
+.header a:hover{
+    cursor: pointer;
+
+}
