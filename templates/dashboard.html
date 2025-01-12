@@ -158,6 +158,18 @@
                 </div>
 
               </div>
+              <div class="product-slider__bottom">
+                <button class="product-slider__fav js-fav"><span class="heart"></span>
+                    <input type="text" class="inp_food" id="food_calories" placeholder="Enter Calories">
+                    
+                </button>
+                <button class="product-slider__fav js-fav"><span class="heart"></span>
+                  <input type="date" class="inp_food" id="food_date" placeholder="Enter Date">
+                </button>
+                <button class="product-slider__cart" id="submit_food" onclick="submit_food()">
+                    SUBMIT
+                </button>
+                </div>
               <!-- update here bro -->
               <!--<div class="product-slider__bottom">
                 <button class="product-slider__fav js-fav"><span class="heart"></span>
@@ -243,10 +255,22 @@
                     SUBMIT
                 </button>
               </div>-->
+               
+              <div class="product-slider__bottom">
+                <button class="product-slider__fav js-fav"><span class="heart"></span>
+                    <input type="text" class="inp_food" id="exercise_hours" placeholder="Enter Exercise Time">
+                    
+                </button>
+                <button class="product-slider__fav js-fav"><span class="heart"></span>
+                  <input type="date" class="inp_food" id="exercise_date" placeholder="Enter Date">
+                </button>
+                <button class="product-slider__cart" id="submit_exercise" onclick="submit_exercise()">
+                    SUBMIT
+                </button>
             </div>
           </div>
         </div>
-
+        </div>
         <div class="product-slider__item swiper-slide" data-target="img3">
           <div class="product-slider__card">
             <div class="product-slider__content">
@@ -316,23 +340,26 @@
 
               </div>
               <!-- update here bro -->
-               <!--
+               
               <div class="product-slider__bottom">
                 <button class="product-slider__fav js-fav"><span class="heart"></span>
-                    <input type="text" class="inp_food" placeholder="Enter today's score">
-                
+                    <input type="text" class="inp_food" id="sleep_hours" placeholder="Enter score">
+                    
                 </button>
-                <button class="product-slider__cart">
+                <button class="product-slider__fav js-fav"><span class="heart"></span>
+                  <input type="date" class="inp_food" id="sleep_date" placeholder="Enter Date">
+                </button>
+                <button class="product-slider__cart" id="submit_sleep" onclick="submit_sleep()">
                     SUBMIT
                 </button>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
 
         
 
-      </div>
+        </div>
     </div>
 
   </div>
