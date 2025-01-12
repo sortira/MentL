@@ -7,6 +7,7 @@ import jinja2
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import secrets
+import json
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -123,7 +124,9 @@ def calculate_mentl_score(email):
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    data = request.get_json()
+    form_data = request.form.to_dict()
+    data = form_data
+    print(data)
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
@@ -141,7 +144,8 @@ def signup():
         'password': hashed_password,
         'name': name
     })
-    return jsonify({'message': 'User registered successfully'}), 201
+    return redirect('/login')
+    #return jsonify({'message': 'User registered successfully'}), 201
 
 @app.route('/login', methods=['POST'])
 def login():
