@@ -285,8 +285,16 @@ def log_journalling():
     user_data = user_ref.get().to_dict()
 
     content_data = user_data.get('journals', [])
-    content_data.append({'date': date, 'content': content})
-
+    isPresent = False
+    for d in content_data:
+        if(date == d['date']):
+            print(content_data.index(d))
+            content_data[content_data.index(d)] = {'date':date,'content':content}
+            isPresent = True
+            print("done")
+            break        
+    if not isPresent:
+        content_data.append({'date': date, 'content':content})
     user_ref.update({'journals': content_data})
     return jsonify({'message': 'Journal data recorded successfully'}), 201
 
@@ -331,7 +339,19 @@ def send_community_page():
 @app.route('/journalling', methods=['GET'])
 @login_required
 def send_journalling_page():
-    return render_template('journal.html')
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+
+    content_data = user_data.get('journals', [])
+    date = datetime.today().strftime('%Y-%m-%d')
+    #isPresent = False
+    for d in content_data:
+        if(date == d['date']):
+            txtVal = d['content']
+            print(txtVal)
+            return render_template('journal.html',textVal=txtVal)        
+
+    return render_template('journal.html',textVal="")
 
 
 if __name__ == '__main__':

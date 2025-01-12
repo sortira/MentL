@@ -9,23 +9,24 @@
     <body>
         <div class="header">
             <header>
-                <button>Home</button>
-                <button>About Us</button>
-                <button class="right">Dashboard</button>
+                <button onclick="loadHome()">Home</button>
+                <button onclick="loadAbout()">About Us</button>
+                <button onclick="loadDash()" class="right">Dashboard</button>
             </header>
         </div>
         <div style="margin: auto; padding: 10px;">
             <div class="box">
                 <h1 style="margin-bottom: 30px">Journal</h1>
                 <textarea
-                    name=""
-                    id=""
+                    name="journals"
+                    id="journalTxt"
                     placeholder="Write your thoughts here..."
-                ></textarea>
+                    value="{{textVal}}"
+                >{{textVal}}</textarea>
                 <br />
-                <button>Submit</button>
+                <button onclick="submit_journal()">Submit</button>
             </div>
         </div>
-        
+    <script src="/static/journal.js"></script>
     </body>
 </html>
