@@ -340,6 +340,14 @@ def send_aboutus_page():
 def send_community_page():
     pass
 
+@app.route('/getjourn',methods=['GET'])
+@login_required
+def getJourns():
+    user_ref = db.collection('users').document(current_user.id)
+    user_data = user_ref.get().to_dict()
+    content_data = user_data.get('journals', [])
+    return render_template("getjourn.html",journs=content_data)
+
 @app.route('/journalling', methods=['GET'])
 @login_required
 def send_journalling_page():
