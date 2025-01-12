@@ -1,5 +1,7 @@
 # MentL - Health Tracking Web Application
 
+The app can be viewed [here](https://mikehawk-mentl.onrender.com/)
+
 MentL is a Flask-based web application designed to help users track and manage their health metrics, such as sleep, physical activity, and calorie intake. The application includes features like user authentication, data logging, score calculation, and a dashboard to visualize health metrics.
 
 ---
