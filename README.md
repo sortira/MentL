@@ -22,6 +22,7 @@ MentL is a Flask-based web application designed to help users track and manage t
 - **Score Calculation**: Generate health scores for sleep, physical activity, and calorie intake.
 - **Dashboard**: Visualize health scores.
 - **Journaling**: Maintain a journal to track daily thoughts or activities.
+- **Articles** : Provision to read articles about mental health improv topics.
 ---
 
 ## Project Structure
