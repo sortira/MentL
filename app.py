@@ -329,6 +329,7 @@ def send_community_page():
     pass
 
 @app.route('/journalling', methods=['GET'])
+@login_required
 def send_journalling_page():
     return render_template('journal.html')
 
